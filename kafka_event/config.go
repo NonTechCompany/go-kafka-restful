@@ -1,8 +1,8 @@
 package kafka_event
 
-var EmployeeTopic = "Employee"
+var employeeTopic = "Employee"
 
 func Init() {
 	initProducer()
-	InitConsumer()
+	initConsumer()
 }

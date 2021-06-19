@@ -5,7 +5,7 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
-func InitConsumer() {
+func initConsumer() {
 	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": "localhost",
 		"group.id":          "myGroup",
@@ -16,7 +16,7 @@ func InitConsumer() {
 		panic(err)
 	}
 
-	err = consumer.SubscribeTopics([]string{EmployeeTopic}, nil)
+	err = consumer.SubscribeTopics([]string{employeeTopic}, nil)
 
 	go subScribeTopics(consumer)
 }
@@ -29,7 +29,7 @@ func subScribeTopics(consumer *kafka.Consumer) {
 		if err == nil {
 			fmt.Printf("Message on %s: %s\n", *msg.TopicPartition.Topic, string(msg.Value))
 			switch *msg.TopicPartition.Topic {
-			case EmployeeTopic:
+			case employeeTopic:
 				fmt.Println("Some Employee Logic")
 			}
 		} else {

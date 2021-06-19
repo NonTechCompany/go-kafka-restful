@@ -2,8 +2,6 @@ package user
 
 import (
 	"com.example.go-kafka-restful/kafka_event"
-	"encoding/json"
-	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func insertUser(user UserDTO) uint {
@@ -13,9 +11,7 @@ func insertUser(user UserDTO) uint {
 		LastName:  user.LastName,
 	})
 
-	content, _ := json.Marshal(entity)
-	kafka_event.EmployeeProducer.ProduceChannel() <- &kafka.Message{TopicPartition: kafka.TopicPartition{Topic: &kafka_event.EmployeeTopic, Partition: kafka.PartitionAny}, Value: content}
-
+	kafka_event.Publish(entity)
 	return entity.ID
 }
 

@@ -3,7 +3,6 @@ package user
 import (
 	"com.example.go-kafka-restful/db"
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"strconv"
@@ -15,7 +14,6 @@ func Router(r *gin.RouterGroup) {
 	r.GET("/:id", func(c *gin.Context) {
 		id := c.Param("id")
 		value, _ := strconv.Atoi(id)
-		fmt.Println("My id: ", id)
 		c.JSON(200, getUserFromId(value))
 	})
 }

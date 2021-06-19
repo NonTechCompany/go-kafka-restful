@@ -1,6 +1,7 @@
 package main
 
 import (
+	"com.example.go-kafka-restful/config"
 	"com.example.go-kafka-restful/db"
 	"com.example.go-kafka-restful/kafka_event"
 	"com.example.go-kafka-restful/user"
@@ -8,9 +9,15 @@ import (
 )
 
 func main() {
+	Init()
 	r := gin.Default()
-	db.Init()
-	kafka_event.Init()
 	user.Router(r.Group("/user"))
 	_ = r.Run()
+}
+
+func Init() {
+	config.Init()
+	db.Init()
+	kafka_event.Init()
+
 }

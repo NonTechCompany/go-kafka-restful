@@ -1,8 +1,11 @@
 package kafka_event
 
-var employeeTopic = "Employee"
+import "com.example.go-kafka-restful/config"
+
+var employeeTopic string
 
 func Init() {
+	employeeTopic = config.GetAppConfig().Kafka.TopicName
 	initProducer()
 	initConsumer()
 }

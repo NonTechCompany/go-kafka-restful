@@ -18,21 +18,23 @@ func InitConsumer() {
 
 	err = consumer.SubscribeTopics([]string{EmployeeTopic}, nil)
 
-	go func() {
-		for {
-			fmt.Println("waiting for next message.....")
-			msg, err := consumer.ReadMessage(-1)
+	go subScribeTopics(consumer)
+}
 
-			if err == nil {
-				fmt.Printf("Message on %s: %s\n", *msg.TopicPartition.Topic, string(msg.Value))
-				switch *msg.TopicPartition.Topic {
-				case EmployeeTopic:
-					fmt.Println("Some Employee Logic")
-				}
-			} else {
-				fmt.Printf("Consumer error: %v (%v)\n", err, msg)
+func subScribeTopics(consumer *kafka.Consumer) {
+	for {
+		fmt.Println("waiting for next message.....")
+		msg, err := consumer.ReadMessage(-1)
+
+		if err == nil {
+			fmt.Printf("Message on %s: %s\n", *msg.TopicPartition.Topic, string(msg.Value))
+			switch *msg.TopicPartition.Topic {
+			case EmployeeTopic:
+				fmt.Println("Some Employee Logic")
 			}
+		} else {
+			fmt.Printf("Consumer error: %v (%v)\n", err, msg)
 		}
-		consumer.Close()
-	}()
+	}
+	consumer.Close()
 }

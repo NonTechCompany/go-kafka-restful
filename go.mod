@@ -1,4 +1,4 @@
-module com.example.go-postgres
+module com.example.go-kafka-restful
 
 go 1.15
 

@@ -1,7 +1,7 @@
 package user
 
 import (
-	"com.example.go-postgres/db"
+	"com.example.go-kafka-restful/db"
 )
 
 func insert(user User) User {

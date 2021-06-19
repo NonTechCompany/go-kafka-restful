@@ -1,9 +1,9 @@
 package main
 
 import (
-	"com.example.go-postgres/db"
-	"com.example.go-postgres/kafka_event"
-	"com.example.go-postgres/user"
+	"com.example.go-kafka-restful/db"
+	"com.example.go-kafka-restful/kafka_event"
+	"com.example.go-kafka-restful/user"
 	"github.com/gin-gonic/gin"
 )
 

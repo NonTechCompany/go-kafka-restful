@@ -1,7 +1,7 @@
 package user
 
 import (
-	"com.example.go-postgres/kafka_event"
+	"com.example.go-kafka-restful/kafka_event"
 	"encoding/json"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )

@@ -1,7 +1,7 @@
 package user
 
 import (
-	"com.example.go-postgres/db"
+	"com.example.go-kafka-restful/db"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"

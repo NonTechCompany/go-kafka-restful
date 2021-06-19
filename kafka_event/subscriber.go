@@ -5,8 +5,8 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
-func Subscribe() {
-	c, err := kafka.NewConsumer(&kafka.ConfigMap{
+func InitConsumer() {
+	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": "localhost",
 		"group.id":          "myGroup",
 		"auto.offset.reset": "earliest",
@@ -16,19 +16,23 @@ func Subscribe() {
 		panic(err)
 	}
 
-	err = c.SubscribeTopics([]string{EmployeeTopic}, nil)
+	err = consumer.SubscribeTopics([]string{EmployeeTopic}, nil)
 
-	for {
-		fmt.Println("waiting for next message.....")
-		msg, err := c.ReadMessage(-1)
-		if err == nil {
-			fmt.Printf("Message on %s: %s\n", msg.TopicPartition, string(msg.Value))
-		} else {
-			// The client will automatically try to recover from all errors.
-			fmt.Printf("Consumer error: %v (%v)\n", err, msg)
+	go func() {
+		for {
+			fmt.Println("waiting for next message.....")
+			msg, err := consumer.ReadMessage(-1)
+
+			if err == nil {
+				fmt.Printf("Message on %s: %s\n", *msg.TopicPartition.Topic, string(msg.Value))
+				switch *msg.TopicPartition.Topic {
+				case EmployeeTopic:
+					fmt.Println("Some Employee Logic")
+				}
+			} else {
+				fmt.Printf("Consumer error: %v (%v)\n", err, msg)
+			}
 		}
-	}
-
-	c.Close()
-
+		consumer.Close()
+	}()
 }

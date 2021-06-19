@@ -4,4 +4,12 @@ import "github.com/confluentinc/confluent-kafka-go/kafka"
 
 var EmployeeProducer *kafka.Producer
 
-var EmployeeTopic = "Employee"
+func initProducer() {
+	p, err := kafka.NewProducer(&kafka.ConfigMap{
+		"bootstrap.servers": "localhost",
+	})
+	if err != nil {
+		panic(err)
+	}
+	EmployeeProducer = p
+}

@@ -1,15 +1,8 @@
 package kafka_event
 
-import "github.com/confluentinc/confluent-kafka-go/kafka"
+var EmployeeTopic = "Employee"
 
 func Init() {
-	p, err := kafka.NewProducer(&kafka.ConfigMap{
-		"bootstrap.servers": "localhost",
-	})
-	if err != nil {
-		panic(err)
-	}
-	EmployeeProducer = p
-
-	go Subscribe()
+	initProducer()
+	InitConsumer()
 }

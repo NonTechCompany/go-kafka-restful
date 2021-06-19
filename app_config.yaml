@@ -5,4 +5,8 @@ db:
   username: postgres
   password: example
 kafka:
+  consumer:
+    groupId: ggwp
+  bootstrap:
+    servers: localhost
   topicName: User

@@ -20,6 +20,16 @@ type Database struct {
 
 type Kafka struct {
 	TopicName string
+	Bootstrap Bootstrap
+	Consumer  Consumer
+}
+
+type Consumer struct {
+	GroupId string
+}
+
+type Bootstrap struct {
+	Servers string
 }
 
 var appConfig AppConfig

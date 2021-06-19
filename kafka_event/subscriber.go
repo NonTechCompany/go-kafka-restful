@@ -1,14 +1,15 @@
 package kafka_event
 
 import (
+	"com.example.go-kafka-restful/config"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func initConsumer() {
 	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": "localhost",
-		"group.id":          "myGroup",
+		"bootstrap.servers": config.GetAppConfig().Kafka.Bootstrap.Servers,
+		"group.id":          config.GetAppConfig().Kafka.Consumer.GroupId,
 		"auto.offset.reset": "earliest",
 	})
 

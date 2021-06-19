@@ -1,6 +1,7 @@
 package kafka_event
 
 import (
+	"com.example.go-kafka-restful/config"
 	"encoding/json"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
@@ -10,7 +11,7 @@ var employeeProducer *kafka.Producer
 
 func initProducer() {
 	p, err := kafka.NewProducer(&kafka.ConfigMap{
-		"bootstrap.servers": "localhost",
+		"bootstrap.servers": config.GetAppConfig().Kafka.Bootstrap.Servers,
 	})
 	if err != nil {
 		panic(err)

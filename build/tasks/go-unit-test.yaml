@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: go-unit-test
+spec:
+  steps:
+    - name: download-dependencies
+      image: golang
+      workingDir: $(workspaces.source.path)
+      script: |
+        go get
+    - name: unit-test
+      image: golang
+      workingDir: $(workspaces.source.path)
+      script: |
+        go test
+  workspaces:
+    - name: source
+

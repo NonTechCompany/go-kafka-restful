@@ -1,8 +1,8 @@
 package db
 
 import (
-	"com.example.go-kafka-restful/config"
 	"fmt"
+	"github.com/NonTechCompany/go-kafka-restful/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"os"

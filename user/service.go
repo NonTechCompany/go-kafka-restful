@@ -1,7 +1,7 @@
 package user
 
 import (
-	"com.example.go-kafka-restful/kafka_event"
+	"github.com/NonTechCompany/go-kafka-restful/kafka_event"
 )
 
 func insertUser(user UserDTO) uint {

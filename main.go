@@ -1,10 +1,10 @@
 package main
 
 import (
-	"com.example.go-kafka-restful/config"
-	"com.example.go-kafka-restful/db"
-	"com.example.go-kafka-restful/kafka_event"
-	"com.example.go-kafka-restful/user"
+	"github.com/NonTechCompany/go-kafka-restful/config"
+	"github.com/NonTechCompany/go-kafka-restful/db"
+	"github.com/NonTechCompany/go-kafka-restful/kafka_event"
+	"github.com/NonTechCompany/go-kafka-restful/user"
 	"github.com/gin-gonic/gin"
 )
 

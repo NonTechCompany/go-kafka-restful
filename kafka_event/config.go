@@ -1,6 +1,6 @@
 package kafka_event
 
-import "com.example.go-kafka-restful/config"
+import "github.com/NonTechCompany/go-kafka-restful/config"
 
 var employeeTopic string
 

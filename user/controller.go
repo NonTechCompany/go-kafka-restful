@@ -1,8 +1,8 @@
 package user
 
 import (
-	"com.example.go-kafka-restful/db"
 	"encoding/json"
+	"github.com/NonTechCompany/go-kafka-restful/db"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"strconv"

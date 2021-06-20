@@ -1,9 +1,9 @@
 package kafka_event
 
 import (
-	"com.example.go-kafka-restful/config"
 	"encoding/json"
 	"fmt"
+	"github.com/NonTechCompany/go-kafka-restful/config"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 

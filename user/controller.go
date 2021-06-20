@@ -2,20 +2,22 @@ package user
 
 import (
 	"encoding/json"
-	"github.com/NonTechCompany/go-kafka-restful/db"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"strconv"
 )
 
 func Router(r *gin.RouterGroup) {
-	_ = db.Connection.AutoMigrate(&User{})
 	r.POST("/", addUser())
-	r.GET("/:id", func(c *gin.Context) {
+	r.GET("/:id", getUserById())
+}
+
+func getUserById() func(c *gin.Context) {
+	return func(c *gin.Context) {
 		id := c.Param("id")
 		value, _ := strconv.Atoi(id)
 		c.JSON(200, getUserFromId(value))
-	})
+	}
 }
 
 func addUser() func(c *gin.Context) {

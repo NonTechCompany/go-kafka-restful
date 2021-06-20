@@ -18,6 +18,7 @@ func main() {
 func Init() {
 	config.Init()
 	db.Init()
+	_ = db.Connection.AutoMigrate(&user.User{})
 	kafka_event.Init()
 
 }

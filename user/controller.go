@@ -3,6 +3,7 @@ package user
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	"io/ioutil"
 	"strconv"
 )
@@ -14,9 +15,16 @@ func Router(r *gin.RouterGroup) {
 
 func getUserById() func(c *gin.Context) {
 	return func(c *gin.Context) {
+
+		logrus.WithFields(logrus.Fields{"hostname": "staging-1"}).Info("ggwp")
 		id := c.Param("id")
 		value, _ := strconv.Atoi(id)
-		c.JSON(200, getUserFromId(value))
+		user, err := getUserFromId(value)
+		if err != nil {
+			c.Error(err)
+			return
+		}
+		c.JSON(200, user)
 	}
 }
 

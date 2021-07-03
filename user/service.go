@@ -15,13 +15,15 @@ func insertUser(user UserDTO) uint {
 	return entity.ID
 }
 
-func getUserFromId(id int) UserDTO {
+func getUserFromId(id int) (UserDTO, error) {
 
-	entity := findUserById(id)
-
+	entity, err := findUserById(id)
+	if err != nil {
+		return UserDTO{}, err
+	}
 	return UserDTO{
 		ID:        entity.ID,
 		FirstName: entity.FirstName,
 		LastName:  entity.LastName,
-	}
+	}, nil
 }

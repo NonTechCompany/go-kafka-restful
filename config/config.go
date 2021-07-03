@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
@@ -43,6 +44,13 @@ func Init() {
 		panic(fmt.Errorf("Fatal error config file: %w \n", err))
 	}
 	_ = viper.Unmarshal(&appConfig)
+
+	setLogger()
+
+}
+
+func setLogger() {
+	logrus.SetFormatter(&logrus.JSONFormatter{})
 }
 
 func GetAppConfig() AppConfig {

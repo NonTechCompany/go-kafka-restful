@@ -1,8 +1,12 @@
 package user
 
 import (
+	"errors"
 	"github.com/NonTechCompany/go-kafka-restful/db"
+	"gorm.io/gorm"
 )
+
+var UserNotFoundError = errors.New("User not found")
 
 func insert(user User) User {
 	database := db.Connection
@@ -10,9 +14,15 @@ func insert(user User) User {
 	return user
 }
 
-func findUserById(id int) User {
+func findUserById(id int) (User, error) {
 
 	var user User
-	db.Connection.First(&user, id)
-	return user
+	first := db.Connection.First(&user, id)
+	if first.Error != nil {
+		if first.Error == gorm.ErrRecordNotFound {
+			return User{}, UserNotFoundError
+		}
+		return User{}, first.Error
+	}
+	return user, nil
 }
